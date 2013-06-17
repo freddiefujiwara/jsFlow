@@ -1,8 +1,8 @@
 "use strict"
 root = require "./pipable"
 
-class exports.False extends root.Pipable
-    name:"False"
+class exports.Exit extends root.Pipable
+    name:"Exit"
     run:(status) ->
-        status.next = false
+        status.exit = true
         @status = status
