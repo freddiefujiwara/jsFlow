@@ -1,16 +1,23 @@
 "use strict"
 root = exports ? window
+$ = $ ? require 'jquery'
 
-class @Pipable
+class root.Pipable
+    name:"Pipable"
     @pipes:[]
     @status:{}
     @start:false
-    @exit:false
     @run: ->
-      status = {next:true}
-      for pipe in Pipable.pipes
-        unless Pipable.exit
-          status =  pipe.run status
+      status = {next:true,pipes:Pipable.pipes,exit:false}
+      deferredQueue = $.Deferred()
+      for pipe in status.pipes
+        deferredQueue.then (status) ->
+          pipe = status.pipes.shift()
+          unless status.exit
+            status = pipe.run status
+          status
+
+      deferredQueue.resolve status
 
     valueOf: ->
       if Pipable.start

@@ -2,6 +2,7 @@
 root = require "./pipable"
 
 class exports.Exit extends root.Pipable
+    name:"Exit"
     run:(status) ->
-        root.Pipable.exit = true
+        status.exit = true
         @status = status
