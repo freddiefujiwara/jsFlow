@@ -1,0 +1,41 @@
+{
+  "name": "jsFlow",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/grunt --no-color"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/freddiefujiwara/jsFlow.git"
+  },
+  "keywords": [
+    "api"
+  ],
+  "dependencies": {
+    "jquery": "~1.8.3"
+  },
+  "author": "Freddie Fujiwara",
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "devDependencies": {
+    "grunt": "~0.4.1",
+    "grunt-cli": "~0.1.9",
+    "grunt-exec": "~0.4.1",
+    "grunt-simple-mocha": "~0.4.0",
+    "grunt-jscoverage": "0.0.2",
+    "grunt-contrib-uglify": "~0.2.2",
+    "grunt-contrib-coffee": "~0.7.0",
+    "grunt-contrib-watch": "~0.4.4",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-jshint": "~0.6.0",
+    "should": "~1.2.2",
+    "sinon": "~1.7.2",
+    "mocha": "~1.10.0",
+    "jscoverage": "~0.3.7"
+  },
+  "engine": {
+    "node": ">= 0.8.0"
+  }
+}
