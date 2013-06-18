@@ -1,0 +1,10 @@
+node_modules/
+js/*.js
+dist/*.js
+js-cov/*.css
+js-cov/*.js
+js-cov/*.gif
+js-cov/*.html
+js-cov/*.coffee
+*.coverage.json
+*.coverage.html
