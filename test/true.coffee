@@ -19,8 +19,9 @@ describe 'True', ->
     it "should be a True object", ->
         t.should.be.a "object"
 
-    it "runs" , ->
+    it "runs" ,(done) ->
        Pipable.start = true
        p+t+p
-       Pipable.run()
-       should.equal p.status.count,2
+       Pipable.run().then (status)->
+         should.equal status.count,2
+         done()

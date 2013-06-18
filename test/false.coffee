@@ -19,8 +19,9 @@ describe 'False', ->
     it "should be a False object", ->
         f.should.be.a "object"
 
-    it "runs" , ->
+    it "runs" , (done) ->
        Pipable.start = true
        p+f+p
-       Pipable.run()
-       should.equal p.status.count,1
+       Pipable.run().then (status)->
+         should.equal status.count,1
+         done()

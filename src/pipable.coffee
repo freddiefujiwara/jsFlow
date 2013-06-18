@@ -5,26 +5,33 @@ $ = $ ? require 'jquery'
 class root.Pipable
     name:"Pipable"
     @pipes:[]
-    @status:{}
     @start:false
     @run: ->
       status = {next:true,pipes:Pipable.pipes,exit:false}
       deferredQueue = $.Deferred()
-      for pipe in status.pipes
-        deferredQueue.then (status) ->
+      last = deferredQueue
+      for pipe in Pipable.pipes
+        last = last.then (status) ->
           pipe = status.pipes.shift()
-          unless status.exit
-            status = pipe.run status
-          status
+          pipe.run status
 
       deferredQueue.resolve status
+      last
 
     valueOf: ->
       if Pipable.start
         Pipable.pipes.push @
 
     run:(status) ->
-        if status.next
-          status.count = if status.count then status.count + 1 else 1
-        status.next = true
-        @status = status
+        d = $.Deferred()
+        return d.resolve(status).promise() if status.exit
+        d.then (status) ->
+          if status.next
+            status.count = if status.count then status.count + 1 else 1
+          status.next = true
+          status
+
+        setTimeout () ->
+          d.resolve status
+
+        d.promise()

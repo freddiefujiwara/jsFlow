@@ -14,8 +14,7 @@ describe 'Pipable', ->
        Pipable.exit  = false
 
     it "should be a Pipable object", ->
-       should.equal Pipable.start,false
-       should.equal Pipable.exit,false
+        should.equal Pipable.start,false
 
     it "has properties", ->
        should.equal Pipable.pipes.length,0
@@ -27,17 +26,20 @@ describe 'Pipable', ->
     it "has static properties", ->
        should.equal typeof Pipable.run, "function"
 
-    it "runs ", ->
+    it "runs ",(done) ->
        Pipable.start = true
 
        p-p-p
-       
 
-       Pipable.run()
-       should.equal p.status.count,3
+       Pipable.run().then (status) ->
+         should.equal status.count,3
+         done()
 
+    it "runs ",(done) ->
+       Pipable.start = true
        p-p-p
 
        Pipable.exit = true
-       Pipable.run()
-       should.equal p.status.count,3
+       Pipable.run().then (status) ->
+         should.equal status.count,3
+         done()

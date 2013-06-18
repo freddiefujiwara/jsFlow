@@ -22,8 +22,9 @@ describe 'Exit', ->
     it "should be a Exit object", ->
         e.should.be.a "object"
 
-    it "runs" , ->
+    it "runs" , (done) ->
        Pipable.start = true
        p+t+e+t+p
-       Pipable.run()
-       should.equal p.status.count,1
+       Pipable.run().then (status)->
+         should.equal status.count,1
+         done()
